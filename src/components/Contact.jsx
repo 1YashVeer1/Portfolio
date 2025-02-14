@@ -4,96 +4,126 @@ import { styles } from '../styles';
 import { motion } from "framer-motion";
 import { slideIn } from "../utils/motion";
 import EarthCanvas from './EarthCanvas';
-// import emailjs from '@emailjs/browser';
-// import {EarthCanvas} from './canvas';
-
-
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
-    const formRef = useRef();
-    const [form, setForm] = useState({
+  const formRef = useRef();
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    emailjs.send(
+      'service_uh8v21c',
+      'template_rea04mm',
+      {
+        user_name: form.name,
+        to_name: 'Yashveer',
+        user_email: form.email,
+        to_email: 'yashkumargurjar55@gmail.com',
+        message: form.message
+      },
+      'EcvZJJpDGTUd3S54I'
+    ).then(() => {
+      setLoading(false);
+      toast.success('thank you. I will get back to you as soon as possible.');
+      setForm({
         name: "",
         email: "",
-        message: ""
-    });
-    const [loading, setLoading] = useState(false);
-    const handleChange = (e) => {
-
+        message: "",
+      })
+    }, (error) => {
+      setLoading(false)
+      console.log(error);
+      toast.error('something went wrong');
     }
-    const handleSubmit = (e) => {
+    );
+  };
 
-    }
-    return (
-        <div className='xl:mt-[12rem] flex-row  flex gap-[10px] justify-between overflow-hidden'>
-            <motion.div
-                variants={slideIn("left", "tween", 0.2, 1)}
-                className='flex-[0.75rem] bg-[#5d69b3f0] p-[2rem] rounded-[2rem] w-[50rem]'
-            >
-                <p className={styles.sectionSubText}>Get in touch</p>
-                <h3 className={styles.sectionHeadText}>Contact.</h3>
+  return (
+    <div className='xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden'>
+      <motion.div
+        variants={slideIn("left", "tween", 0.2, 1)}
+        className='flex-0.75 bg-black-100 p-8 rounded-2xl'
+      >
+        <p className={styles.sectionSubText}>Get in touch</p>
+        <h3 className={styles.sectionHeadText}>Contact.</h3>
 
-                <form
-                    ref={formRef}
-                    onSubmit={handleSubmit}
-                    className='mt-[12px] flex flex-col gap-[1rem]'
-                >
-                    <label className='flex flex-col'>
-                        <span className='text-[White] font-medium mb-[4px]'>
-                            Your Name
-                        </span>
-                        <input
-                            type='text'
-                            name='name'
-                            value={form.name}
-                            onChange={handleChange}
-                            placeholder="What's your name?"
-                            className='w-[50%] bg-[white] py-[5px] px-[1rem] placeholder:text-[secondary] text-tertiary rounded-full outline-none border-none font-medium'
-                        />
-                    </label>
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className='mt-12 flex flex-col gap-8'
+        >
+          <label className='flex flex-col'>
+            <span className='text-[White] font-medium mb-4'>
+              Your Name
+            </span>
+            <input
+              type='text'
+              name='name'
+              value={form.name}
+              onChange={handleChange}
+              placeholder="What's your name?"
+              className='bg-[white] py-4 px-6 placeholder:text-[secondary] text-[#0a0a5d] rounded-full outline-none border-none font-medium'
+            />
+          </label>
 
-                    <label className='flex flex-col'>
-                        <span className='text-[White] font-medium mb-[4px]'>
-                            Your Email
-                        </span>
-                        <input
-                            type='email'
-                            name='email'
-                            value={form.email}
-                            onChange={handleChange}
-                            placeholder="What's your email?"
-                            className='w-[50%] bg-[white] py-[5px] px-[1rem] placeholder:text-[secondary] text-tertiary rounded-full outline-none border-none font-medium'
-                        />
-                    </label>
+          <label className='flex flex-col'>
+            <span className='text-[White] font-medium mb-[4px]'>
+              Your Email
+            </span>
+            <input
+              type='email'
+              name='email'
+              value={form.email}
+              onChange={handleChange}
+              placeholder="What's your email?"
+              className='bg-[white] py-4 px-6 placeholder:text-[secondary] text-[#0a0a5d] rounded-full outline-none border-none font-medium'
 
-                    <label className='flex flex-col'>
-                        <span className='text-[White] font-medium mb-[4px]'>
-                            Your Message
-                        </span>
-                        <textarea
-                            rows={8}
-                            name='message'
-                            value={form.message}
-                            onChange={handleChange}
-                            placeholder="What you want to say?"
-                            className='w-[80%] bg-[white] py-[8px] px-[1rem] placeholder:text-[secondary] text-tertiary outline-none border-none rounded-[1rem] font-medium'
-                        />
-                    </label>
-                    <button
-                        type='submit'
-                        className='bg-[#6d37b8f0] py-[5px] px-[8px] outline-none w-full text-[white] font-bold shadow-primary rounded-[1.5rem] cursor-pointer'>
-                        {loading ? 'Sending...' : 'Send'}
-                    </button>
-                </form>
-            </motion.div>
+            />
+          </label>
 
-            <motion.div
-                variants={slideIn("right", "tween", 0.2, 1)}
-                className='xl:flex-1 xl:h--auto md:h-[550px] h-[350px] w-[60rem]'
-            >
-                <EarthCanvas />
-            </motion.div>
-        </div>
-    )
+          <label className='flex flex-col'>
+            <span className='text-[White] font-medium mb-[4px]'>
+              Your Message
+            </span>
+            <textarea
+              rows={8}
+              name='message'
+              value={form.message}
+              onChange={handleChange}
+              placeholder="What you want to say?"
+              className='bg-[white] py-4 px-6 placeholder:text-[secondary] text-[#0a0a5d] rounded-[1rem] outline-none border-none font-medium'
+
+            />
+          </label>
+          <button
+            type='submit'
+            className='bg-[#6d37b8f0] py-[5px] px-[8px] outline-none w-full text-[white] font-bold shadow-primary rounded-lg cursor-pointer'>
+            {loading ? 'Sending...' : 'Send'}
+          </button>
+        </form>
+      </motion.div>
+
+      <motion.div
+        variants={slideIn("right", "tween", 0.2, 1)}
+        className='xl:flex-1 xl:h--auto md:h-[550px] h-[350px] '
+      >
+        <EarthCanvas />
+      </motion.div>
+    </div>
+  )
 }
 
 export default StarWrapper(Contact, "contact");

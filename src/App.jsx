@@ -4,23 +4,21 @@ import Intro from "./components/Intro";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import "./index.css";
+import { ToastContainer } from "react-toastify";
+import ParticlesBackground from "./components/ParticlesBackground";
 const App = () => {
 
   return (
     <>
       <BrowserRouter>
         <div className="relative z-0 bg-[#050816] ">
-          <div className="bg-[url('/src/assets/herobg.png')] bg-cover bg-no-repeat bg-center">
-            <Navbar />
-            <Intro />
-          </div>
-          <div className="bg-[url('/src/assets/herobg.png')] bg-cover bg-no-repeat bg-center">
-            <About />
-          </div>
-
+          <ToastContainer position="top-right" autoClose={3000} />
+          <ParticlesBackground />
+          <Navbar />
+          <Intro />
+          <About />
           <div className="relative z-0">
             <Contact />
-
           </div>
         </div>
       </BrowserRouter>
