@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <div className="relative z-0 bg-[#050816] ">
+        <div className="relative z-0 bg-[#050816]">
           <ToastContainer position="top-right" autoClose={3000} />
           <ParticlesBackground />
           <Navbar />

@@ -5,16 +5,16 @@ import ComputersCanvas from './Computer';
 const Intro = () => {
     return (
         <section className={`relative w-full h-screen mx-auto bg-[url('/src/assets/herobg.png')] bg-cover bg-no-repeat bg-center`} >
-            <div className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7x1 mx-auto flex flex-row items-start gap-5`}>
-                <div className='flex flex-col justify-center items-center mt-5'>
+            <div className={`${styles.paddingX} absolute inset-0 lg:top-[100px] sm:flex top-[60px] max-w-7x1 mx-auto flex flex-row items-start gap-5`}>
+                <div className='flex flex-col justify-center items-center'>
                     <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
                     <div className='w-1 sm:h-80 h-40 violet-gradient' />
                 </div>
-                <div className='p-[1rem]'>
+                <div className='xl:p-[1rem] xs:flex p-0'>
                     <h1 className={`${styles.heroHeadText}`}>
                         Hi, I'm <span className='text-[#915eff] '>Yash Kumar Gurjar</span>
                     </h1>
-                    <p className={`${styles.heroSubText} mt-[10px] text-white-100 text-[20px]`}>
+                    <p className={`${styles.heroSubText} `}>
                         I develop user <br className='sm:block hidden' />
                         interfaces and web applications
                     </p>
