@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
+import { OrbitControls, Preload, SpotLight, useGLTF } from '@react-three/drei';
 import CanvasLoader from './Loader';
 import { useMediaQuery, useTheme } from '@mui/material';
 
@@ -15,7 +15,7 @@ const Computers = () => {
     return (
         <mesh>
             <hemisphereLight intensity={2} groundColor="black" />
-            <spotLight
+            <SpotLight
                 position={[-20, 50, 10]}
                 angle={0.12}
                 penumbra={1}
@@ -27,7 +27,7 @@ const Computers = () => {
             <primitive
                 object={computer.scene}
                 scale={mobile ? 0.3 : 0.6}
-                position={mobile ? [0, -2, -0.5] : [0, -3.25, -1.5]}
+                position={mobile ? [0, -1, -0.4] : [0, -3.25, -1.5]}
                 rotation={[-0.01, -0.2, -0.1]}
             />
         </mesh>

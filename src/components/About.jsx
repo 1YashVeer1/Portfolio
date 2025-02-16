@@ -18,10 +18,10 @@ const About = () => {
       </motion.div>
 
       <div className=" w-full flex justify-between gap-10 sm:flex flex-col lg:flex-row ">
-        <div className="w-[50%]">
+        <div className="xl:w-[50%] sm:w-full">
         <motion.div
             variants={slideIn("left", "tween", 0.2, 1)}
-            className="w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[450px] opacity-[0.7] lg:h-[450px] mt-10 lg:top-[100px] rounded-full overflow-hidden"
+            className="w-[250px] h-[250px] m-auto md:w-[300px] md:h-[300px] lg:w-[450px] opacity-[0.7] lg:h-[450px] mt-10 lg:top-[100px] rounded-full overflow-hidden"
             style={{ transform: "translate(40px, 50px)", boxShadow: "rgba(176, 108, 249, 0.7) 0px 0px 15px 5px", transition: "box-shadow 0.3s ease-in-out 0s" }}>
             <img src={yashveer} alt="Yashveer Gurjar" loading="lazy" className="w-full h-full object-cover" />
           </motion.div>

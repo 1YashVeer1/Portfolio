@@ -33,7 +33,7 @@ const Intro = () => {
                                 repeat: Infinity,
                                 repeatTypr: 'loop'
                             }}
-                            className='w-[1rem] h-[1rem] rounded-full bg-[#aaa6c3] mb-[1px]'
+                            className='w-[1rem] h-[1rem] rounded-full bg-[#aaa6c3]'
                         />
                     </div>
                 </a>

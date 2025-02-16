@@ -54,7 +54,7 @@ const Navbar = () => {
 
                 <div className="flex xl:flex flex-row gap-5 ml-5 sm:block mr-2">
                     <a href="https://www.linkedin.com/in/yash-veer-78305a232/"><LinkedInIcon className="bg-blue-500 rounded-lg p-1" /></a>
-                    <a href="/public/YashveerResume.pdf" download="YashveerResume.pdf" target="_blank" rel="noopener noreferrer"><FileOpenIcon className="bg-blue-500 rounded-lg p-1" /></a>
+                    <a href="/public/YashveerResume.pdf" download target="_blank" rel="noopener noreferrer"><FileOpenIcon className="bg-blue-500 rounded-lg p-1" /></a>
                 </div>
             </div>
 
