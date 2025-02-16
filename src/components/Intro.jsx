@@ -4,7 +4,7 @@ import ComputersCanvas from "./Computer";
 
 const Intro = () => {
   return (
-    <section className={`relative w-full h-screen mx-auto ${styles.heroBackground}`}>
+    <section className={`relative w-full h-screen mx-auto bg-[url('/src/assets/herobg.png')] bg-cover bg-no-repeat bg-center ${styles.heroBackground}`}>
       <div className={`${styles.paddingX} absolute inset-0 lg:top-[100px] top-[60px] flex items-start gap-5 max-w-7xl mx-auto`}>
         <div className="flex flex-col items-center">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
