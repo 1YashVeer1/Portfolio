@@ -17,9 +17,9 @@ const App = () => {
           <Navbar />
           <Intro />
           <About />
-          <div className="relative z-0">
+          {/* <div className="relative z-0"> */}
             <Contact />
-          </div>
+          {/* </div> */}
         </div>
       </BrowserRouter>
     </>

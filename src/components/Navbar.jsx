@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { styles } from "../styles";
 import { Link } from "react-router-dom";
 import protfolioImg from '../assets/portfoliologo.png'
 import MenuIcon from '@mui/icons-material/Menu';
@@ -36,11 +35,11 @@ const Navbar = () => {
                 >
                     <img src={protfolioImg} alt="logo" className="w-9 h-9 object-contain" />
                     <p className="text-white text-[18px] font-bold cursor-pointer flex">Yashveer</p> &nbsp;
-                    <span className="sm:block  text-white text-[18px]">| Portfolio</span>
+                    <span className="hidden sm:block  text-white text-[18px]">| Portfolio</span>
                 </Link>
             </div>
 
-            <div>
+            <div className="flex items-center"> 
                 <ul className="list-none hidden sm:flex flex-row gap-10 items-center">
                     {navLinks.map((link) => (
                         <li
@@ -51,10 +50,14 @@ const Navbar = () => {
                             <a href={`#${link.id}`}>{link.title}</a>
                         </li>
                     ))}
+                </ul>
+
+                <div className="flex xl:flex flex-row gap-5 ml-5 sm:block mr-2">
                     <a href="https://www.linkedin.com/in/yash-veer-78305a232/"><LinkedInIcon className="bg-blue-500 rounded-lg p-1" /></a>
                     <a href="/public/YashveerResume.pdf" download="YashveerResume.pdf" target="_blank" rel="noopener noreferrer"><FileOpenIcon className="bg-blue-500 rounded-lg p-1" /></a>
-                </ul>
+                </div>
             </div>
+
 
             <div>
                 <div className="sm:hidden flex flex-1 justify-end items-center relative">
