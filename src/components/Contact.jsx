@@ -14,14 +14,30 @@ const Contact = () => {
     email: "",
     message: ""
   });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value })
+    setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [e.target.name]: '' });
   }
+
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let newErrors = {};
+    if (!form.name.trim()) newErrors.name = "Name is required!";
+    if (!form.email.trim()) newErrors.email = "Email is required!";
+    else if (!isValidEmail(form.email)) newErrors.email = "Invalid email format!";
+    if (!form.message.trim()) newErrors.message = "Message cannot be empty!";
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     setLoading(true);
 
     emailjs.send(
@@ -78,6 +94,7 @@ const Contact = () => {
                 placeholder="What's your name?"
                 className='bg-[white] py-4 px-6 placeholder:text-[secondary] text-[#0a0a5d] rounded-full outline-none border-none font-medium'
               />
+              {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
             </label>
 
             <label className='flex flex-col'>
@@ -93,6 +110,7 @@ const Contact = () => {
                 className='bg-[white] py-4 px-6 placeholder:text-[secondary] text-[#0a0a5d] rounded-full outline-none border-none font-medium'
 
               />
+              {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
             </label>
 
             <label className='flex flex-col'>
@@ -108,6 +126,7 @@ const Contact = () => {
                 className='bg-[white] py-4 px-6 placeholder:text-[secondary] text-[#0a0a5d] rounded-[1rem] outline-none border-none font-medium'
 
               />
+              {errors.message && <span className="text-red-500 text-sm">{errors.message}</span>}
             </label>
             <button
               type='submit'
